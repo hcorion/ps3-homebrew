@@ -21,7 +21,7 @@ uint8_t sslPool[SSL_POOL_SIZE];
 
 int loadCert(size_t size, unsigned long long flag)
 {
-	void* buf = malloc(size);
+	char* buf = (char*)malloc(size);
 	int ret = sslCertificateLoader(flag, buf, size, NULL);
 	if (ret != 0)
 	{
