@@ -4,6 +4,7 @@
 #include <stdarg.h>
 #include <stdlib.h>
 #include <string.h> 
+#include <inttypes.h>
 
 #include <net/net.h>
 #include <http/http.h>
@@ -19,7 +20,7 @@
 uint8_t httpPool[HTTP_POOL_SIZE];
 uint8_t sslPool[SSL_POOL_SIZE];
 
-int loadCert(size_t size, unsigned long long flag)
+inline int loadCert(size_t size, uint64_t flag)
 {
 	char* buf = (char*)malloc(size);
 	int ret = sslCertificateLoader(flag, buf, size, NULL);
@@ -73,26 +74,18 @@ int main(int argc,char *argv[])
 	printf("CELL_SSL_LOAD_CERT_ALL: %llu\n", CELL_SSL_LOAD_CERT_ALL);
 	
 	httpsData *caList = NULL;
-	size_t size = 0;
-	//char *buf = NULL;
-	caList = (httpsData *)malloc(sizeof(httpsData)*2);
+	uint32_t size = 0;
 	
-	
-	
-//	if (NULL == buf)
-//	{
-//		printf("can't malloc cert buffer\n");
-//	}
-	
-	ret = sslCertificateLoader(CELL_SSL_LOAD_CERT_NORMAL, NULL, 0, &size);
+	ret = sslCertificateLoader(CELL_SSL_LOAD_CERT_ALL, NULL, 0, &size);
 	printf("ret: %d\n", ret);
-	printf("size: %u\n", size);
-	//loadCert(size, CELL_SSL_LOAD_CERT_SCE01);
-	//loadCert(size, CELL_SSL_LOAD_CERT_SCE02);
-	//loadCert(size, CELL_SSL_LOAD_CERT_SCE03);
-	//loadCert(size, CELL_SSL_LOAD_CERT_SCE04);
-	//loadCert(size, CELL_SSL_LOAD_CERT_SCE05);
-	loadCert(size, CELL_SSL_LOAD_CERT_BALTIMORE_CT);
+	printf("size: %"PRIu32"\n", size);
+	
+	loadCert(size, CELL_SSL_LOAD_CERT_SCE01);
+	loadCert(size, CELL_SSL_LOAD_CERT_SCE02);
+	loadCert(size, CELL_SSL_LOAD_CERT_SCE03);
+	loadCert(size, CELL_SSL_LOAD_CERT_SCE04);
+	loadCert(size, CELL_SSL_LOAD_CERT_SCE05);
+	loadCert(size, CELL_SSL_LOAD_CERT_NORMAL);
 	loadCert(size, CELL_SSL_LOAD_CERT_CLASS1_PCA_G2_V2);
 	loadCert(size, CELL_SSL_LOAD_CERT_CLASS1_PCA_G3_V2);
 	loadCert(size, CELL_SSL_LOAD_CERT_CLASS1_PCA_SS_V4);
