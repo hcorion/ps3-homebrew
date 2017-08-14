@@ -84,13 +84,13 @@ int main(int argc,char *argv[])
 //		printf("can't malloc cert buffer\n");
 //	}
 	
-	ret = sslCertificateLoader(CELL_SSL_LOAD_CERT_ALL, NULL, 0, &size);
-	printf("size: %zu\n", size);
-	loadCert(size, CELL_SSL_LOAD_CERT_SCE01);
-	loadCert(size, CELL_SSL_LOAD_CERT_SCE02);
-	loadCert(size, CELL_SSL_LOAD_CERT_SCE03);
-	loadCert(size, CELL_SSL_LOAD_CERT_SCE04);
-	loadCert(size, CELL_SSL_LOAD_CERT_SCE05);
+	ret = sslCertificateLoader(CELL_SSL_LOAD_CERT_NORMAL, NULL, 0, &size);
+	printf("size: %u\n", size);
+	//loadCert(size, CELL_SSL_LOAD_CERT_SCE01);
+	//loadCert(size, CELL_SSL_LOAD_CERT_SCE02);
+	//loadCert(size, CELL_SSL_LOAD_CERT_SCE03);
+	//loadCert(size, CELL_SSL_LOAD_CERT_SCE04);
+	//loadCert(size, CELL_SSL_LOAD_CERT_SCE05);
 	loadCert(size, CELL_SSL_LOAD_CERT_BALTIMORE_CT);
 	loadCert(size, CELL_SSL_LOAD_CERT_CLASS1_PCA_G2_V2);
 	loadCert(size, CELL_SSL_LOAD_CERT_CLASS1_PCA_G3_V2);
