@@ -1,0 +1,7 @@
+#OS stuff
+*.DS_Store
+
+# Build system
+*.elf
+*.fake.self
+build/
