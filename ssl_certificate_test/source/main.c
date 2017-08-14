@@ -20,7 +20,7 @@
 uint8_t httpPool[HTTP_POOL_SIZE];
 uint8_t sslPool[SSL_POOL_SIZE];
 
-inline int loadCert(size_t size, uint64_t flag)
+inline int loadCert(uint32_t size, uint64_t flag)
 {
 	char* buf = (char*)malloc(size);
 	int ret = sslCertificateLoader(flag, buf, size, NULL);
@@ -79,6 +79,8 @@ int main(int argc,char *argv[])
 	ret = sslCertificateLoader(CELL_SSL_LOAD_CERT_ALL, NULL, 0, &size);
 	printf("ret: %d\n", ret);
 	printf("size: %"PRIu32"\n", size);
+	printf("sizeof(uint32_t): %"PRIu32"\n", sizeof(uint32_t));
+	printf("sizeof(size_t): %"PRIu32"\n", sizeof(size_t));
 	
 	loadCert(size, CELL_SSL_LOAD_CERT_SCE01);
 	loadCert(size, CELL_SSL_LOAD_CERT_SCE02);
