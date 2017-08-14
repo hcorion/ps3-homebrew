@@ -85,6 +85,7 @@ int main(int argc,char *argv[])
 //	}
 	
 	ret = sslCertificateLoader(CELL_SSL_LOAD_CERT_NORMAL, NULL, 0, &size);
+	printf("ret: %d\n", ret);
 	printf("size: %u\n", size);
 	//loadCert(size, CELL_SSL_LOAD_CERT_SCE01);
 	//loadCert(size, CELL_SSL_LOAD_CERT_SCE02);
