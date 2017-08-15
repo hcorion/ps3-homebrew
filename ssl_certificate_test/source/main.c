@@ -20,7 +20,7 @@
 uint8_t httpPool[HTTP_POOL_SIZE];
 uint8_t sslPool[SSL_POOL_SIZE];
 
-inline int loadCert(uint32_t size, uint64_t flag)
+int loadCert(uint32_t size, uint64_t flag)
 {
 	char* buf = (char*)malloc(size);
 	int ret = sslCertificateLoader(flag, buf, size, NULL);
