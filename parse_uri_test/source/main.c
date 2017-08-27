@@ -23,11 +23,11 @@ int main(int argc,char *argv[])
 	int ret;
 	
 	printf("I have no idea what I'm doing...\n");
-	//sysModuleLoad(SYSMODULE_HTTP_UTIL);
+	sysModuleLoad(SYSMODULE_HTTP_UTIL);
 	char* string;
 	uint32_t poolSize = 0;
 	httpUri uri;
-	string = "https://github.com";
+	string = "https://John:Dow@github.com:80/corporateshark/LUrlParser";
 	printf("Before httpUtilParseUri\n");
 	ret = httpUtilParseUri(NULL, string, NULL, 0, &poolSize);
 	if (ret < 0)
