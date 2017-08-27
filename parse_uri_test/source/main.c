@@ -43,6 +43,7 @@ int main(int argc,char *argv[])
 	printf("username: %s\n",uri.username);
 	printf("password: %s\n",uri.password);
 	printf("path: %s\n",uri.path);
+	printf("port: %d\n",uri.port);
 	free(uriPool);
 	return 0;
 }
