@@ -27,7 +27,7 @@ int main(int argc,char *argv[])
 	char* string;
 	uint32_t poolSize = 0;
 	httpUri uri;
-	string = "https://John:Dow@github.com:80/corporateshark/LUrlParser";
+	string = "https://John:Dow@github.com/corporateshark/LUrlParser";
 	printf("Before httpUtilParseUri\n");
 	ret = httpUtilParseUri(NULL, string, NULL, 0, &poolSize);
 	if (ret < 0)
