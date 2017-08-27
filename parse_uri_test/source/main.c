@@ -16,23 +16,33 @@
 uint8_t httpPool[HTTP_POOL_SIZE];
 uint8_t sslPool[SSL_POOL_SIZE];
 
+//typedef struct httpUri httpUri ;
+
 int main(int argc,char *argv[])
 {
 	int ret;
 	
 	printf("I have no idea what I'm doing...\n");
-	sysModuleLoad(SYSMODULE_HTTP_UTIL);
-	httpUtilParseUri();
+	//sysModuleLoad(SYSMODULE_HTTP_UTIL);
 	char* string;
-	size_t poolSize = 0;
-	
+	uint32_t poolSize = 0;
+	httpUri uri;
 	string = "https://github.com";
+	printf("Before httpUtilParseUri\n");
 	ret = httpUtilParseUri(NULL, string, NULL, 0, &poolSize);
 	if (ret < 0)
-		printf("Error while parsing URI, %s: %d",string, ret);
-	uriPool = malloc(poolSize);
+		printf("Error while parsing URI, %s: %d\n",string, ret);
+	void* uriPool = malloc(poolSize);
+	printf("After httpUtilParseUri\n");
 	ret = httpUtilParseUri(&uri, string, uriPool, poolSize, NULL);
-	free(uriPool);
 	if (ret < 0)
-		printf("Error while parsing URI, %s: %d",string, ret);
+		printf("Error while parsing URI, %s: %d\n",string, ret);
+	//printf("test: %s",(char*)uriPool);
+	printf("scheme: %s\n",uri.scheme);
+	printf("hostname: %s\n",uri.hostname);
+	printf("username: %s\n",uri.username);
+	printf("password: %s\n",uri.password);
+	printf("path: %s\n",uri.path);
+	free(uriPool);
+	return 0;
 }

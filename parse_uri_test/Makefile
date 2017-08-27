@@ -4,9 +4,9 @@ $(error "PSL1GHT must be set in the environment.")
 endif
 
 #include $(PSL1GHT)/host/ppu.mk
-#include $(PSL1GHT)/base_rules
+include $(PSL1GHT)/base_rules
 include $(PSL1GHT)/ppu_rules
-#include $(PSL1GHT)/data_rules
+include $(PSL1GHT)/data_rules
 
 
 TARGET		:=	$(notdir $(CURDIR))
@@ -31,7 +31,7 @@ LDFLAGS		=	$(MACHDEP) -Wl,-Map,$(notdir $@).map
 #---------------------------------------------------------------------------------
 # any extra libraries we wish to link with the project
 #---------------------------------------------------------------------------------
-LIBS	:=	-lhttputil 
+LIBS	:=	-lhttputil -lsysmodule
 
 #---------------------------------------------------------------------------------
 # list of directories containing libraries, this must be the top level containing
