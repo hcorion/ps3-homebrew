@@ -83,12 +83,12 @@ int main(int argc,char *argv[])
 	//printf("sizeof(uint32_t): %"PRIu32"\n", sizeof(uint32_t));
 	//printf("sizeof(size_t): %"PRIu32"\n", sizeof(size_t));
 	
-	loadCert(size, CELL_SSL_LOAD_CERT_SCE01);
-	loadCert(size, CELL_SSL_LOAD_CERT_SCE02);
-	loadCert(size, CELL_SSL_LOAD_CERT_SCE03);
-	loadCert(size, CELL_SSL_LOAD_CERT_SCE04);
-	loadCert(size, CELL_SSL_LOAD_CERT_SCE05);
-	loadCert(size, CELL_SSL_LOAD_CERT_NORMAL);
+	//loadCert(size, CELL_SSL_LOAD_CERT_SCE01);
+	//loadCert(size, CELL_SSL_LOAD_CERT_SCE02);
+	//loadCert(size, CELL_SSL_LOAD_CERT_SCE03);
+	//loadCert(size, CELL_SSL_LOAD_CERT_SCE04);
+	//loadCert(size, CELL_SSL_LOAD_CERT_SCE05);
+	//loadCert(size, CELL_SSL_LOAD_CERT_NORMAL);
 	loadCert(size, CELL_SSL_LOAD_CERT_CLASS1_PCA_G2_V2);
 	loadCert(size, CELL_SSL_LOAD_CERT_CLASS1_PCA_G3_V2);
 	loadCert(size, CELL_SSL_LOAD_CERT_CLASS1_PCA_SS_V4);
