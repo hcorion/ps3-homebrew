@@ -23,7 +23,7 @@ uint8_t sslPool[SSL_POOL_SIZE];
 int loadCert(uint32_t size, uint64_t flag)
 {
 	char* buf = (char*)malloc(size);
-	int ret = sslCertificateLoader(flag, buf, (size_t)size, NULL);
+	int ret = sslCertificateLoader(flag, buf, (uint32_t)size, NULL);
 	if (ret != 0)
 	{
 		printf("sslCertificateLoader failed: %d\n", ret);
