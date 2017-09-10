@@ -29,9 +29,9 @@ int loadCert(uint32_t size, uint64_t flag)
 	{
 		printf("sslCertificateLoader failed: %d\n", ret);
 	}
-	char word[size+1];
-	strcpy(word, buf);
-	printf("%s\n", word);
+	//char word[size+1];
+	//strcpy(word, buf);
+	printf("%s\n", buf);
 	printf("-----------next-----------\n");
 	free(buf);
 	return ret;
