@@ -22,16 +22,18 @@ uint8_t sslPool[SSL_POOL_SIZE];
 
 int loadCert(uint32_t size, uint64_t flag)
 {
+	uint32_t sized;
+	sslCertificateLoader(CELL_SSL_LOAD_CERT_ALL, NULL, 0, &sized);
 	char* buf = (char*)malloc(size);
-	memset(buf, '\0', size);
-	int ret = sslCertificateLoader(flag, buf, (uint32_t)size, NULL);
+	//memset(buf, '\0', size);
+	int ret = sslCertificateLoader(flag, buf, (uint32_t)sized, NULL);
 	if (ret != 0)
 	{
 		printf("sslCertificateLoader failed: %d\n", ret);
 	}
-	//char word[size+1];
-	//strcpy(word, buf);
-	printf("%s\n", buf);
+	char word[sized];
+	strcpy(word, buf);
+	printf("%s\n", word);
 	printf("-----------next-----------\n");
 	free(buf);
 	return ret;
@@ -78,7 +80,7 @@ int main(int argc,char *argv[])
 	httpsData *caList = NULL;
 	uint32_t size = 0;
 	
-	ret = sslCertificateLoader(CELL_SSL_LOAD_CERT_ALL, NULL, 0, &size);
+	//ret = sslCertificateLoader(CELL_SSL_LOAD_CERT_ALL, NULL, 0, &size);
 	printf("ret: %d\n", ret);
 	printf("size: %"PRIu32"\n", size);
 	//printf("sizeof(uint32_t): %"PRIu32"\n", sizeof(uint32_t));
