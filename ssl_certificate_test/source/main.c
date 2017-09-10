@@ -24,7 +24,7 @@ int loadCert(uint32_t size, uint64_t flag)
 {
 	uint32_t sized;
 	sslCertificateLoader(CELL_SSL_LOAD_CERT_ALL, NULL, 0, &sized);
-	char* buf = (char*)malloc(size);
+	char* buf = (char*)malloc(sized);
 	//memset(buf, '\0', size);
 	int ret = sslCertificateLoader(flag, buf, (uint32_t)sized, NULL);
 	if (ret != 0)
