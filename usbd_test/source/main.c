@@ -5,6 +5,7 @@
 #include <ppu-asm.h>
 #include <lv2/sysfs.h>
 #include <ppu-types.h>
+#include <stdio.h>
 int main()
 {
 	sysModuleLoad(SYSMODULE_USB);
