@@ -23,7 +23,7 @@ PKGFILES	:=	release
 # options for code generation
 #---------------------------------------------------------------------------------
 
-CFLAGS		=	-Os -std=c99 -Wall -mcpu=cell $(MACHDEP) $(INCLUDE)
+CFLAGS		=	-Os -std=gnu99 -Wall -mcpu=cell $(MACHDEP) $(INCLUDE)
 CXXFLAGS	=	$(CFLAGS)
 
 LDFLAGS		=	$(MACHDEP) -Wl,-Map,$(notdir $@).map
@@ -31,7 +31,7 @@ LDFLAGS		=	$(MACHDEP) -Wl,-Map,$(notdir $@).map
 #---------------------------------------------------------------------------------
 # any extra libraries we wish to link with the project
 #---------------------------------------------------------------------------------
-LIBS	:=	-lusb -lsysmodule 
+LIBS	:=	-lusb -lsysmodule -llv2
 
 #---------------------------------------------------------------------------------
 # list of directories containing libraries, this must be the top level containing
