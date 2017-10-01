@@ -8,14 +8,21 @@
 #include <stdio.h>
 int main()
 {
+	// sys_usbd_initiallize returns: 
+	//805322496
+	//805308161
 	sysModuleLoad(SYSMODULE_USB);
-	unsigned int test = 0;
-	sys_usbd_initialize(&test);
-	printf("%u\n", test);
-	unsigned int test2 = 0;
-	sys_usbd_initialize(&test2);
-	printf("%u\n", test2);
-	/*usbInit();
+	for (int i = 0; i < 20; i++)
+	{
+		unsigned int test = 0;
+		sys_usbd_initialize(&test);
+		printf("%u\n", test);
+	}
+	
+	//unsigned int test2 = 0;
+	//sys_usbd_initialize(&test2);
+	//printf("%u\n", test2);
+	/*
 	for (int i = 0; i < 50; i++)
 	{
 		unsigned char* x = 0xd0100760 + (i);
