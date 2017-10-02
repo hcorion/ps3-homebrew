@@ -21,7 +21,7 @@ int main()
 	char thatchar = 0x7f;
 	sys_usbd_get_device_list(uuid, funkyaddr, thatchar);
 	
-	for (int i = 0; i < 20; i++)
+	for (int i = 0; i < 50; i++)
 	{
 		unsigned char* x = funkyaddr + (i);
 		printf("0x%x\n", *x);
