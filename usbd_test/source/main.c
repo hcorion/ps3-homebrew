@@ -12,23 +12,20 @@ int main()
 	//805322496
 	//805308161
 	sysModuleLoad(SYSMODULE_USB);
+	// Init
+	unsigned int uuid = 0;
+	sys_usbd_initialize(&uuid);
+	// Get device list
+	char* funkyaddr = malloc (50);
+	printf("0x%x\n", funkyaddr);
+	char thatchar = 0x7f;
+	sys_usbd_get_device_list(uuid, funkyaddr, thatchar);
+	
 	for (int i = 0; i < 20; i++)
 	{
-		unsigned int test = 0;
-		sys_usbd_initialize(&test);
-		printf("%u\n", test);
-	}
-	
-	//unsigned int test2 = 0;
-	//sys_usbd_initialize(&test2);
-	//printf("%u\n", test2);
-	/*
-	for (int i = 0; i < 50; i++)
-	{
-		unsigned char* x = 0xd0100760 + (i);
+		unsigned char* x = funkyaddr + (i);
 		printf("0x%x\n", *x);
 	}
-	sleep(10);
-	return 0;*/
+	free(funkyaddr);
 	return 0;
 }
