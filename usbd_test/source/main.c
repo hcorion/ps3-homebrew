@@ -19,7 +19,8 @@ int main()
 	char* funkyaddr = malloc (50);
 	printf("0x%x\n", funkyaddr);
 	char thatchar = 0x7f;
-	sys_usbd_get_device_list(uuid, funkyaddr, thatchar);
+	int numOfDevices = sys_usbd_get_device_list(uuid, funkyaddr, thatchar);
+	printf("Number of devices: %d\n", numOfDevices);
 	
 	for (int i = 0; i < 50; i++)
 	{
