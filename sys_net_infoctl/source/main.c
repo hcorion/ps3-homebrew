@@ -22,7 +22,7 @@ int main()
 	signed int cmd = 53;
 	
 	printf("calling syscall \n");
-	int result = sys_net_infoctl(cmd, &buffer);//dns servers?
+	int result = sys_net_infoctl(cmd, funkyaddr);//dns servers?
 	printf("syscall done %x \n", result);
 
 	
