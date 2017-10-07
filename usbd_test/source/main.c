@@ -28,5 +28,9 @@ int main()
 		printf("0x%x\n", *x);
 	}
 	free(funkyaddr);
+	// Descriptor test
+	unsigned int unk1 = 65538;
+	int descSize = sys_usbd_get_descriptor_size(uuid, unk1);
+	printf("unk1=%d, descSize=%d", unk1, descSize);
 	return 0;
 }

@@ -1,5 +1,5 @@
-#ifndef __SYS_FILE_H__
-#define __SYS_FILE_H__
+#ifndef __USB_SYSCALL_H__
+#define __USB_SYSCALL_H__
 
 #include <ppu-lv2.h>
 #include <ppu-asm.h>
@@ -17,6 +17,12 @@ LV2_SYSCALL sys_usbd_initialize(unsigned int *initVal)
 LV2_SYSCALL sys_usbd_get_device_list(unsigned int handle, void *device_list, char unknown)
 {
 	lv2syscall3(532, handle, device_list, unknown);
+	//printf ("%u", *initVal);
+	return_to_user_prog(int);
+}
+LV2_SYSCALL sys_usbd_get_descriptor_size(unsigned int handle, unsigned int unk1)
+{
+	lv2syscall2(533, handle, unk1);
 	//printf ("%u", *initVal);
 	return_to_user_prog(int);
 }
