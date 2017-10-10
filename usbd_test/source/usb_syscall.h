@@ -26,4 +26,11 @@ LV2_SYSCALL sys_usbd_get_descriptor_size(unsigned int handle, unsigned int unk1)
 	//printf ("%u", *initVal);
 	return_to_user_prog(int);
 }
+
+LV2_SYSCALL sys_usbd_get_descriptor(unsigned int handle, unsigned int unk1, void *descriptor, signed long descSize)
+{
+	lv2syscall4(533, handle, unk1, descriptor, descSize);
+	//printf ("%u", *initVal);
+	return_to_user_prog(int);
+}
 #endif
