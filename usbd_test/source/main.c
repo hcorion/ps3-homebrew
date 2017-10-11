@@ -30,9 +30,9 @@ int main()
 	printf("Number of devices: %d\n", numOfDevices);
 	
 	int crazyman = 0;
-	while (crazyman < 50)
+	while (crazyman < 40)
 	{
-		char word[9];
+		char word[17];
 		int length = 0;
 		for (int i = 0; i < 4; i++)
 		{
@@ -54,7 +54,7 @@ int main()
 	// Descriptor tests //
 	//////////////////////
 	
-	unsigned int unk1 = 65539;
+	unsigned char unk1 = 2;
 	int descSize = sys_usbd_get_descriptor_size(uuid, unk1);
 	// Returns 50, unk1 doesn't change.
 	printf("descriptor_size: unk1=%d, descSize=%d\n", unk1, descSize);
