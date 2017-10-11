@@ -32,7 +32,7 @@ int main()
 	int crazyman = 0;
 	while (crazyman < 40)
 	{
-		char word[21];
+		char word[22];
 		int length = 0;
 		for (int i = 0; i < 4; i++)
 		{
@@ -41,6 +41,7 @@ int main()
 			crazyman += 1;
 			length += sprintf(word + length, "0x%x ", *x);
 		}
+		word[21] = '\0';
 		// If there is no data, don't bother printing it.
 		if (strcmp(word, "0x0 0x0 0x0 0x0 "))
 		{
