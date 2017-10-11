@@ -32,7 +32,7 @@ int main()
 	int crazyman = 0;
 	while (crazyman < 40)
 	{
-		char word[17];
+		char word[21];
 		int length = 0;
 		for (int i = 0; i < 4; i++)
 		{
