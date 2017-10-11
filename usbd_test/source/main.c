@@ -79,7 +79,7 @@ int main()
 	printf("descSize addr\n");
 	for (int i = 0; i < 50; i++)
 	{
-		unsigned char* x = descSize;
+		unsigned char* x = descSize + (i);
 		printf("0x%x\n", *x);
 	}
 	free(descriptor);
