@@ -33,4 +33,11 @@ LV2_SYSCALL sys_usbd_get_descriptor(unsigned int handle, unsigned int unk1, void
 	//printf ("%u", *initVal);
 	return_to_user_prog(int);
 }
+
+LV2_SYSCALL sys_usbd_receive_event(unsigned int handle, unsigned long long int *unk1, unsigned long long int *unk2, unsigned long long int *unk3)
+{
+	lv2syscall4(540, handle, unk1, unk2, unk3);
+	//printf ("%u", *initVal);
+	return_to_user_prog(int);
+}
 #endif

@@ -33,6 +33,7 @@ int main()
 	while (crazyman < 40)
 	{
 		char word[22];
+		memset(word, '\0', sizeof(word));
 		int length = 0;
 		for (int i = 0; i < 4; i++)
 		{
@@ -54,34 +55,62 @@ int main()
 	//////////////////////
 	// Descriptor tests //
 	//////////////////////
+	for (unsigned int i = 2; i <= numOfDevices+1; i++)
+	{
+		unsigned int oldI = 0;
+		if (i == 2)
+		{
+			oldI = 2;
+			i = 65538;
+		}
+		else if (i == 3)
+		{
+			oldI = i;
+			i = 65539;
+		}
+		
+		printf("Device: %u\n", i);
+		
+		int descSize = sys_usbd_get_descriptor_size(uuid, i);
+		
+		printf("descriptor_size: i=%d, descSize=%d\n", i, descSize);
+		
+		if (descSize < 0)
+		{
+			printf("sys_usbd_get_descriptor_size failed with 0x%x\n", descSize);
+			continue;
+		}
+		
+		// time to actually get the descriptor
+		char* descriptor = malloc (descSize);
+		printf("Descriptor: 0x%x\n", descriptor);
+		printf("descSize as hex: 0x%x\n", descSize);
+		printf("uuid: %u\n", uuid);
+		
+		int ret = sys_usbd_get_descriptor(uuid, i, descriptor, descSize);
+		printf("get_descriptor: i=%d, descSize=%d ret=%d\n", i, descSize, ret);
+		for (int i = 0; i < descSize; i++)
+		{
+			unsigned char* x = descriptor + (i);
+			printf("0x%x\n", *x);
+		}
+		free(descriptor);
+		
+		if (oldI != 0)
+		{
+			i = oldI;
+		}
+	}
 	
-	unsigned int unk1 = 5;
-	int descSize = sys_usbd_get_descriptor_size(uuid, unk1);
-	// Returns 50, unk1 doesn't change.
-	printf("descriptor_size: unk1=%d, descSize=%d\n", unk1, descSize);
-	// time to actually get the descriptor
-	char* descriptor = malloc (50);
-	printf("Descriptor: 0x%x\n", descriptor);
-	printf("descSize as hex: 0x%x\n", descSize);
-	printf("uuid: %u\n", uuid);
-	/*char array[50] = {0x00, 0x00, 0x00, 0x00, 0xd0, 0x08, 0x0a, 0x48, 0x32, 0x0d, 0xc1, 0xa8, 0x00, 0x00, 0x00, 0x81, 
-	0x20, 0x01, 0x00, 0xb4, 0x20, 0x01, 0x00, 0xb4, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 
-	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 
-	0x00, 0x00};*/
-	//memcpy(descriptor, array, 50);
-	int ret = sys_usbd_get_descriptor(uuid, unk1, descriptor, descSize);
-	printf("get_descriptor_size: unk1=%d, descSize=%d ret=%d\n", unk1, descSize, ret);
-	for (int i = 0; i < 50; i++)
-	{
-		unsigned char* x = descriptor + (i);
-		printf("0x%x\n", *x);
-	}
-	printf("descSize addr\n");
-	for (int i = 0; i < 50; i++)
-	{
-		unsigned char* x = descSize + (i);
-		printf("0x%x\n", *x);
-	}
-	free(descriptor);
+	/////////////////////////
+	// receive event tests //
+	/////////////////////////
+	
+		
+	unsigned long long int unk1 = 0;
+	unsigned long long int unk2 = 0;
+	unsigned long long int unk3 = 0;
+	int ret = sys_usbd_receive_event(uuid, &unk1, &unk2, &unk3);
+	printf("sys_usbd_receive_event: ret=%d, unk1=%llu, unk2=%llu, unk3=%llu\n", ret, unk1, unk2, unk3);
 	return 0;
 }
