@@ -19,7 +19,13 @@ int main()
 	// sys_usbd_initiallize returns: 
 	//805322496
 	//805308161
-	
+	unsigned long long int unk1 = 0;
+	unsigned long long int unk2 = 0;
+	unsigned long long int unk3 = 0;
+	printf("Before receive_event\n");
+	int ret1 = sys_usbd_receive_event(uuid, &unk1, &unk2, &unk3);
+	printf("After receive_event\n");
+	printf("sys_usbd_receive_event: ret=%d, unk1=%llu, unk2=%llu, unk3=%llu\n", ret1, unk1, unk2, unk3);
 	/////////////////////
 	// Get device list //
 	/////////////////////
