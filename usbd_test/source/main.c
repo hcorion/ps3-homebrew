@@ -112,7 +112,7 @@ int main()
 	// receive event tests //
 	/////////////////////////
 	// It seems like receive event only works after register_extra_ldd
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < 2; i++)
 	{
 		unsigned long long int unk1 = 0;
 		unsigned long long int unk2 = 0;
