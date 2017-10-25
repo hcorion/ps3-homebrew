@@ -112,14 +112,16 @@ int main()
 	/////////////////////////
 	// receive event tests //
 	/////////////////////////
-	
-		
-	unsigned long long int unk1 = 0;
-	unsigned long long int unk2 = 0;
-	unsigned long long int unk3 = 0;
-	printf("Before receive_event\n");
-	ret = sys_usbd_receive_event(uuid, &unk1, &unk2, &unk3);
-	printf("After receive_event\n");
-	printf("sys_usbd_receive_event: ret=%d, unk1=%llu, unk2=%llu, unk3=%llu\n", ret, unk1, unk2, unk3);
+	// It seems like receive event only works after register_extra_ldd
+	for (int i = 0; i < 5; i++)
+	{
+		unsigned long long int unk1 = 0;
+		unsigned long long int unk2 = 0;
+		unsigned long long int unk3 = 0;
+		printf("Before receive_event\n");
+		ret = sys_usbd_receive_event(uuid, &unk1, &unk2, &unk3);
+		printf("After receive_event\n");
+		printf("sys_usbd_receive_event: ret=%d, unk1=%llu, unk2=%llu, unk3=%llu\n", ret, unk1, unk2, unk3);
+	}
 	return 0;
 }
