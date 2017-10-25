@@ -19,13 +19,6 @@ int main()
 	// sys_usbd_initiallize returns: 
 	//805322496
 	//805308161
-	unsigned long long int unk1 = 0;
-	unsigned long long int unk2 = 0;
-	unsigned long long int unk3 = 0;
-	printf("Before receive_event\n");
-	int ret1 = sys_usbd_receive_event(uuid, &unk1, &unk2, &unk3);
-	printf("After receive_event\n");
-	printf("sys_usbd_receive_event: ret=%d, unk1=%llu, unk2=%llu, unk3=%llu\n", ret1, unk1, unk2, unk3);
 	/////////////////////
 	// Get device list //
 	/////////////////////
@@ -128,6 +121,21 @@ int main()
 		ret = sys_usbd_receive_event(uuid, &unk1, &unk2, &unk3);
 		printf("After receive_event\n");
 		printf("sys_usbd_receive_event: ret=%d, unk1=%llu, unk2=%llu, unk3=%llu\n", ret, unk1, unk2, unk3);
+	}
+	
+	int descSize = sys_usbd_get_descriptor_size(uuid, 6);
+		
+	printf("descriptor_size: descSize=%d\n", descSize);
+	// time to actually get the descriptor
+	char* descriptor = malloc (descSize);
+	printf("Descriptor: 0x%x\n", descriptor);
+	
+	ret = sys_usbd_get_descriptor(uuid, 6, descriptor, descSize);
+	printf("get_descriptor: descSize=%d ret=%d\n", descSize, ret);
+	for (int i = 0; i < descSize; i++)
+	{
+		unsigned char* x = descriptor + (i);
+		printf("0x%x\n", *x);
 	}
 	return 0;
 }
