@@ -98,7 +98,7 @@ int main()
 		for (int i = 0; i < descSize; i++)
 		{
 			unsigned char* x = descriptor + (i);
-			//printf("0x%x\n", *x);
+			printf("0x%x\n", *x);
 		}
 		free(descriptor);
 		
