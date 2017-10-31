@@ -25,46 +25,46 @@ int main()
 	// Possible cmds, 53, 9, 5
 	
 	{
-		uint8_t buffer[256];
+	unsigned char* buffer1 = malloc(256);
 	int cmd = 9;
 	printf("calling syscall \n");
-	int result = sys_net_infoctl(cmd, &buffer);//dns servers?
+	int result = sys_net_infoctl(cmd, &buffer1);//dns servers?
 	printf("syscall done %x \n", result);
 
 	
 	for(int i = 0; i < 256; i++)
 	{
-		unsigned char* x = buffer + (i);
+		unsigned char* x = buffer1 + (i);
 		printf("[%d] = 0x%X \n", i, *x);
 	}
 	}
 	
 	{
-	uint8_t buffer[256];
+	unsigned char* buffer2 = malloc(256);
 	int cmd = 9;
 	printf("calling syscall \n");
-	int result = sys_net_infoctl(cmd, &buffer);//dns servers?
+	int result = sys_net_infoctl(cmd, &buffer2);//dns servers?
 	printf("syscall done %x \n", result);
 
 	
 	for(int i = 0; i < 256; i++)
 	{
-		unsigned char* x = buffer + (i);
+		unsigned char* x = buffer2 + (i);
 		printf("[%d] = 0x%X \n", i, *x);
 	}
 	}
 	
 	{
-	uint8_t buffer[256];
+	unsigned char* buffer3 = malloc(256);
 	int cmd = 5;
 	printf("calling syscall \n");
-	int result = sys_net_infoctl(cmd, &buffer);//dns servers?
+	int result = sys_net_infoctl(cmd, &buffer3);//dns servers?
 	printf("syscall done %x \n", result);
 
 	
 	for(int i = 0; i < 256; i++)
 	{
-		unsigned char* x = buffer + (i);
+		unsigned char* x = buffer3 + (i);
 		printf("[%d] = 0x%X \n", i, *x);
 	}
 	}
