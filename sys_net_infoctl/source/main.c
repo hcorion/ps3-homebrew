@@ -20,7 +20,8 @@ int main()
 	// netCtlInit, just in case.
 	netCtlInit();
 	//char* funkyaddr = malloc(256);
-	
+	unsigned char buffder[256];
+	netCtlGetInfo(0x10, buffder);
 	// Possible cmds, 53, 9, 5
 	
 	{
