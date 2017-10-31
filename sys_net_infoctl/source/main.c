@@ -25,7 +25,14 @@ int main()
 	// Possible cmds, 53, 9, 5
 	
 	{
-	unsigned char* buffer1 = malloc(256);
+	unsigned int* buffer1 = malloc(256);
+	unsigned char* test = malloc(20);
+	buffer1[1] = test;
+	test[0] = 0x25;
+	test[1] = 0x14;
+	test[2] = 0xE7;
+	test[3] = 0xD8;
+	test[7] = 1;
 	int cmd = 53;
 	printf("calling syscall \n");
 	int result = sys_net_infoctl(cmd, &buffer1);//dns servers?
@@ -34,7 +41,7 @@ int main()
 	
 	for(int i = 0; i < 256; i++)
 	{
-		unsigned char* x = buffer1 + (i);
+		unsigned char* x = ((unsigned char*)buffer1) + (i);
 		printf("[%d] = 0x%X \n", i, *x);
 	}
 	}
