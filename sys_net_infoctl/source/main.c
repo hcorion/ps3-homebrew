@@ -26,7 +26,7 @@ int main()
 	
 	{
 	unsigned char* buffer1 = malloc(256);
-	int cmd = 9;
+	int cmd = 53;
 	printf("calling syscall \n");
 	int result = sys_net_infoctl(cmd, &buffer1);//dns servers?
 	printf("syscall done %x \n", result);
