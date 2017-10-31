@@ -6,7 +6,7 @@
 #include <lv2/sysfs.h>
 #include <ppu-types.h>
 
-LV2_SYSCALL sys_net_infoctl(signed int cmd, void *arg)
+LV2_SYSCALL sys_net_infoctl(unsigned int cmd, void *arg)
 {
 	lv2syscall2(722, cmd, arg);
 	return_to_user_prog(int);
