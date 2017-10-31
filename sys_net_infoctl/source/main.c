@@ -26,7 +26,7 @@ int main()
 	
 	{
 		uint8_t buffer[256];
-	int cmd = 53;
+	int cmd = 9;
 	printf("calling syscall \n");
 	int result = sys_net_infoctl(cmd, &buffer);//dns servers?
 	printf("syscall done %x \n", result);
