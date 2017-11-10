@@ -34,9 +34,9 @@ LV2_SYSCALL sys_usbd_receive_event(unsigned int handle, unsigned long long int *
 	return_to_user_prog(int);
 }
 
-LV2_SYSCALL sys_usbd_register_extra_ldd(unsigned int handle, void *lddOps, unsigned short strLen, unsigned short vendorID, unsigned short productID, unsigned short unk1)
+LV2_SYSCALL sys_usbd_register_extra_ldd(unsigned int handle, void *lddOps, unsigned int strLen, unsigned short vendorID, unsigned short productID, unsigned short unk1)
 {
 	lv2syscall6(559, handle, lddOps, strLen, vendorID, productID, unk1);
-	return_to_user_prog(int);
+	return_to_user_prog(unsigned long long int);
 }
 #endif

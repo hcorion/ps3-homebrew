@@ -50,13 +50,6 @@ int main()
 		}
 	}
 	free(funkyaddr);
-	//////////////////////////////
-	// Register Extra Ldd Tests //
-	//////////////////////////////
-	//sys_usbd_register_extra_ldd(handle=805322496, lddOps=0xe5a4b0, unk1=17, vendorID=5168, productID=336, unk2=336)
-	char* blargStringTM = "HID Device Driver";
-	int ret = sys_usbd_register_extra_ldd(uuid, blargStringTM, 17, 5168, 336, 336);
-	printf("sys_usbd_register_extra_ldd: ret = %d\n", ret);
 	
 	//////////////////////
 	// Descriptor tests //
@@ -107,6 +100,15 @@ int main()
 			i = oldI;
 		}
 	}
+	
+	//////////////////////////////
+	// Register Extra Ldd Tests //
+	//////////////////////////////
+	//sys_usbd_register_extra_ldd(handle=805322496, lddOps=0xe5a4b0, unk1=17, vendorID=5168, productID=336, unk2=336)
+	char* blargStringTM = malloc(30);
+	blargStringTM = "HID Device Driver";
+	unsigned long long int ret = sys_usbd_register_extra_ldd(uuid, blargStringTM, 17, 5168, 336, 336);
+	printf("sys_usbd_register_extra_ldd: ret = %llu\n", ret);
 	
 	/////////////////////////
 	// receive event tests //
