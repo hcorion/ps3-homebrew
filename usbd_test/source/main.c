@@ -6,6 +6,49 @@
 #include <lv2/sysfs.h>
 #include <ppu-types.h>
 #include <stdio.h>
+#include <string.h>
+
+void skylandersDump()
+{
+	u32 handle = 0;
+	sys_usbd_initialize(&handle);
+	char* device_list = malloc (50);
+	sys_usbd_get_device_list(handle, device_list, 0x7f);
+	char* name = "HID Device Driver";
+	// Vendor ID and product ID for skylanders portal respectively
+	const u16 portal_vid = 0x1430;
+	const u16 portal_pid = 0x0150;
+	u64 lddHandle = sys_usbd_register_extra_ldd(handle, name, strlen(name), portal_vid, portal_pid, portal_pid);
+	u64 arg1 = 0, arg2 = 0, arg3 = 0;
+	while (arg1 != SYS_USBD_DEVICE_STATUS_UNK)
+	{
+		sys_usbd_receive_event(handle, &arg1, &arg2, &arg3);
+		printf("sys_usbd_receive_event(arg1=%ld, arg2=%ld, arg3=%ld)\n", arg1, arg2, arg3);
+	}
+	sys_usbd_attach(handle, lddHandle, arg2, arg2);
+	sys_usbd_open_default_pipe(handle, arg2);
+	// Yay magic numbers
+	sys_usbd_open_pipe(handle, arg2, 0x1, 0x0, 0x0, 0x81, 0x3);
+	usbDeviceRequest req;
+	req.bmRequestType = 0x0;
+	req.bRequest = 0x9;
+	req.wValue = 0x1;
+	req.wIndex = 0x0;
+	req.wLength = 0x0;
+	sys_usbd_transfer_data(handle, 0x0, NULL, 0, &req, 0x8);
+	printf("sys_usbd_transfer_data: mbRequestType=0x%x, bRequest=0x%x, wValue=0x%x, wIndex=0x%x, wLength=0x%x\n",
+		   req.bmRequestType, req.bRequest, req.wValue, req.wIndex, req.wLength);
+	u32 result = 0;
+	u32 count = 0;
+	sys_usbd_get_transfer_status(handle, 0x0, 0x2, &result, &count);
+	printf("sys_usbd_get_transfer_status: result=%d, count=%d\n", result, count);
+	char* in_buf = malloc(0x20);
+	sys_usbd_transfer_data(handle, 0x1, in_buf, 0x20, NULL, 0);
+	for (int i = 0; i < 0x20; i++)
+	{
+		printf("0x%x\n", *(in_buf + i));
+	}
+}
 
 int main()
 {
@@ -14,7 +57,13 @@ int main()
 	//////////
 	// Init //
 	//////////
-	unsigned int uuid = 0;
+	skylandersDump();
+	return 0;
+
+
+	// Old code
+	
+	/*unsigned int uuid = 0;
 	sys_usbd_initialize(&uuid);
 	// sys_usbd_initiallize returns: 
 	//805322496
@@ -139,5 +188,5 @@ int main()
 		unsigned char* x = descriptor + (i);
 		printf("0x%x\n", *x);
 	}
-	return 0;
+	return 0;*/
 }

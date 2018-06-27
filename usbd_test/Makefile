@@ -23,7 +23,7 @@ PKGFILES	:=	release
 # options for code generation
 #---------------------------------------------------------------------------------
 
-CFLAGS		=	-Os -std=gnu99 -Wall -mcpu=cell $(MACHDEP) $(INCLUDE)
+CFLAGS		=	-Wno-int-conversion -std=gnu99 -Wall -mcpu=cell $(MACHDEP) $(INCLUDE)
 CXXFLAGS	=	$(CFLAGS)
 
 LDFLAGS		=	$(MACHDEP) -Wl,-Map,$(notdir $@).map
